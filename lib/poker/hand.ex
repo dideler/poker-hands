@@ -8,6 +8,7 @@ defmodule Poker.Hand do
     cond do
       royal_flush?(cards) -> :royal_flush
       straight_flush?(cards) -> :straight_flush
+      four_of_a_kind?(cards) -> :four_of_a_kind
       true -> :high_card
     end
   end
@@ -34,4 +35,21 @@ defmodule Poker.Hand do
         and d == a + 3
         and e == a + 4, do: true
   defp straight_flush?(_), do: false
+
+  # Four cards of the same rank, and one side card or ‘kicker’.
+  defp four_of_a_kind?([
+    %{rank: a},
+    %{rank: a},
+    %{rank: a},
+    %{rank: a},
+    %{rank: _},
+    ]), do: true
+  defp four_of_a_kind?([
+    %{rank: _},
+    %{rank: a},
+    %{rank: a},
+    %{rank: a},
+    %{rank: a},
+    ]), do: true
+  defp four_of_a_kind?(_), do: false
 end
