@@ -54,6 +54,18 @@ defmodule Poker.HandTest do
     assert Hand.score(cards) == :full_house
   end
 
+  test "evaluates flush" do
+    cards = [
+      %Card{rank: 12, suit: :clubs},
+      %Card{rank: 8, suit: :clubs},
+      %Card{rank: 6, suit: :clubs},
+      %Card{rank: 4, suit: :clubs},
+      %Card{rank: 3, suit: :clubs},
+    ]
+
+    assert Hand.score(cards) == :flush
+  end
+
   test "evaluates high card" do
     cards = [
       %Card{rank: 2, suit: :spades},

@@ -10,6 +10,7 @@ defmodule Poker.Hand do
       straight_flush?(cards) -> :straight_flush
       four_of_a_kind?(cards) -> :four_of_a_kind
       full_house?(cards) -> :full_house
+      flush?(cards) -> :flush
       true -> :high_card
     end
   end
@@ -70,4 +71,14 @@ defmodule Poker.Hand do
     %{rank: b},
     ]), do: true
   defp full_house?(_), do: false
+
+  # Five cards of the same suit.
+  defp flush?([
+    %{suit: a},
+    %{suit: a},
+    %{suit: a},
+    %{suit: a},
+    %{suit: a},
+    ]), do: true
+  defp flush?(_), do: false
 end
