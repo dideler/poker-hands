@@ -6,6 +6,18 @@ defmodule Poker.HandTest do
 
   doctest Poker.Hand
 
+  test "evaluates a royal flush" do
+    cards = [
+      %Card{rank: 14, suit: :clubs},
+      %Card{rank: 13, suit: :clubs},
+      %Card{rank: 12, suit: :clubs},
+      %Card{rank: 11, suit: :clubs},
+      %Card{rank: 10, suit: :clubs},
+    ]
+
+    assert Hand.score(cards) == :royal_flush
+  end
+
   test "evaluates a straight flush" do
     cards = [
       %Card{rank: 5, suit: :clubs},
