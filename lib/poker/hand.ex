@@ -9,6 +9,7 @@ defmodule Poker.Hand do
       royal_flush?(cards) -> :royal_flush
       straight_flush?(cards) -> :straight_flush
       four_of_a_kind?(cards) -> :four_of_a_kind
+      full_house?(cards) -> :full_house
       true -> :high_card
     end
   end
@@ -52,4 +53,21 @@ defmodule Poker.Hand do
     %{rank: a},
     ]), do: true
   defp four_of_a_kind?(_), do: false
+
+  # Three cards of the same rank, and two cards of a different, matching rank.
+  defp full_house?([
+    %{rank: a},
+    %{rank: a},
+    %{rank: a},
+    %{rank: b},
+    %{rank: b},
+    ]), do: true
+  defp full_house?([
+    %{rank: a},
+    %{rank: a},
+    %{rank: b},
+    %{rank: b},
+    %{rank: b},
+    ]), do: true
+  defp full_house?(_), do: false
 end
