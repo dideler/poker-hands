@@ -20,6 +20,18 @@ defmodule Poker.Hand do
     %{rank: 13, suit: s},
     %{rank: 14, suit: s},
     ]), do: true
+  defp royal_flush?(_), do: false
 
-  defp straight_flush?(_), do: true
+  # Five cards in numerical order, all of identical suits.
+  defp straight_flush?([
+    %{rank: a, suit: s},
+    %{rank: b, suit: s},
+    %{rank: c, suit: s},
+    %{rank: d, suit: s},
+    %{rank: e, suit: s},
+    ]) when b == a + 1
+        and c == a + 2
+        and d == a + 3
+        and e == a + 4, do: true
+  defp straight_flush?(_), do: false
 end
