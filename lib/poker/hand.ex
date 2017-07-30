@@ -12,6 +12,7 @@ defmodule Poker.Hand do
       full_house?(cards) -> :full_house
       flush?(cards) -> :flush
       straight?(cards) -> :straight
+      three_of_a_kind?(cards) -> :three_of_a_kind
       true -> :high_card
     end
   end
@@ -95,4 +96,28 @@ defmodule Poker.Hand do
         and d == a + 3
         and e == a + 4, do: true
   defp straight?(_), do: false
+
+  # Three cards of the same rank, and two unrelated side cards.
+  defp three_of_a_kind?([
+    %{rank: a},
+    %{rank: a},
+    %{rank: a},
+    %{rank: _b},
+    %{rank: _c},
+    ]), do: true
+  defp three_of_a_kind?([
+    %{rank: _a},
+    %{rank: b},
+    %{rank: b},
+    %{rank: b},
+    %{rank: _c},
+    ]), do: true
+  defp three_of_a_kind?([
+    %{rank: _a},
+    %{rank: _b},
+    %{rank: c},
+    %{rank: c},
+    %{rank: c},
+    ]), do: true
+  defp three_of_a_kind?(_), do: false
 end
