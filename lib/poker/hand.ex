@@ -11,6 +11,7 @@ defmodule Poker.Hand do
       four_of_a_kind?(cards) -> :four_of_a_kind
       full_house?(cards) -> :full_house
       flush?(cards) -> :flush
+      straight?(cards) -> :straight
       true -> :high_card
     end
   end
@@ -81,4 +82,17 @@ defmodule Poker.Hand do
     %{suit: a},
     ]), do: true
   defp flush?(_), do: false
+
+  # Five cards in numerical order.
+  defp straight?([
+    %{rank: a},
+    %{rank: b},
+    %{rank: c},
+    %{rank: d},
+    %{rank: e},
+    ]) when b == a + 1
+        and c == a + 2
+        and d == a + 3
+        and e == a + 4, do: true
+  defp straight?(_), do: false
 end
