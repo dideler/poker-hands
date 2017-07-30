@@ -14,6 +14,7 @@ defmodule Poker.Hand do
       straight?(cards) -> :straight
       three_of_a_kind?(cards) -> :three_of_a_kind
       two_pair?(cards) -> :two_pair
+      one_pair?(cards) -> :one_pair
       true -> :high_card
     end
   end
@@ -145,4 +146,35 @@ defmodule Poker.Hand do
     %{rank: b},
     ]), do: true
   defp two_pair?(_), do: false
+
+  # Two cards of a matching rank, and three unrelated side cards.
+  defp one_pair?([
+    %{rank: a},
+    %{rank: a},
+    %{rank: _b},
+    %{rank: _c},
+    %{rank: _d},
+    ]), do: true
+  defp one_pair?([
+    %{rank: _a},
+    %{rank: b},
+    %{rank: b},
+    %{rank: _c},
+    %{rank: _d},
+    ]), do: true
+  defp one_pair?([
+    %{rank: _a},
+    %{rank: _b},
+    %{rank: c},
+    %{rank: c},
+    %{rank: _d},
+    ]), do: true
+  defp one_pair?([
+    %{rank: _a},
+    %{rank: _b},
+    %{rank: _c},
+    %{rank: d},
+    %{rank: d},
+    ]), do: true
+  defp one_pair?(_), do: false
 end
