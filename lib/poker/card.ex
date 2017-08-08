@@ -4,4 +4,16 @@ defmodule Poker.Card do
   # Suits can be: :hearts, :diamonds, :clubs, :spades
 
   defstruct [:rank, :suit]
+
+  @type t :: %__MODULE__{
+    rank: 2..14,
+    suit: :clubs | :hearts | :diamonds | :spades,
+  }
+
+  def new do
+    %__MODULE__{
+      rank: Enum.random(2..14),
+      suit: Enum.random([:clubs, :hearts, :diamonds, :spades]),
+    }
+  end
 end

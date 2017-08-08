@@ -3,6 +3,19 @@ defmodule Poker.Hand do
 
   alias Poker.Card
 
+  defstruct cards: [], type: nil
+
+  @type t :: %__MODULE__{
+    cards: list(Card.t),
+    type: atom | nil,
+  }
+
+  def new do
+    %__MODULE__{
+      cards: [Card.new, Card.new, Card.new, Card.new, Card.new],
+    }
+  end
+
   def score(cards) do
     cards = Enum.sort_by(cards, &(&1.rank))
     cond do

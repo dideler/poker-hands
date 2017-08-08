@@ -1,10 +1,14 @@
 defmodule Poker.HandTest do
   use ExUnit.Case, async: true
 
-  alias Poker.Hand
   alias Poker.Card
+  alias Poker.Hand
 
-  doctest Poker.Hand
+  doctest Hand
+
+  test "consists of five cards" do
+    assert length(Hand.new.cards) == 5
+  end
 
   test "evaluates a royal flush" do
     cards = [
