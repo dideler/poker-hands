@@ -19,7 +19,7 @@ defmodule Poker.HandTest do
       %Card{rank: 10, suit: :clubs},
     ]
 
-    assert Hand.score(cards) == :royal_flush
+    assert Hand.rank(cards) == :royal_flush
   end
 
   test "evaluates a straight flush" do
@@ -31,7 +31,7 @@ defmodule Poker.HandTest do
       %Card{rank: 9, suit: :clubs},
     ]
 
-    assert Hand.score(cards) == :straight_flush
+    assert Hand.rank(cards) == :straight_flush
   end
 
   test "evaluates four of a kind" do
@@ -43,7 +43,7 @@ defmodule Poker.HandTest do
       %Card{rank: 8, suit: :clubs},
     ]
 
-    assert Hand.score(cards) == :four_of_a_kind
+    assert Hand.rank(cards) == :four_of_a_kind
   end
 
   test "evaluates full house" do
@@ -55,7 +55,7 @@ defmodule Poker.HandTest do
       %Card{rank: 10, suit: :clubs},
     ]
 
-    assert Hand.score(cards) == :full_house
+    assert Hand.rank(cards) == :full_house
   end
 
   test "evaluates flush" do
@@ -67,7 +67,7 @@ defmodule Poker.HandTest do
       %Card{rank: 3, suit: :clubs},
     ]
 
-    assert Hand.score(cards) == :flush
+    assert Hand.rank(cards) == :flush
   end
 
   test "evaluates straight" do
@@ -79,7 +79,7 @@ defmodule Poker.HandTest do
       %Card{rank: 6, suit: :clubs},
     ]
 
-    assert Hand.score(cards) == :straight
+    assert Hand.rank(cards) == :straight
   end
 
   test "evaluates three of a kind" do
@@ -91,7 +91,7 @@ defmodule Poker.HandTest do
       %Card{rank: 8, suit: :diamonds},
     ]
 
-    assert Hand.score(cards) == :three_of_a_kind
+    assert Hand.rank(cards) == :three_of_a_kind
   end
 
   test "evaluates two pair" do
@@ -103,7 +103,7 @@ defmodule Poker.HandTest do
       %Card{rank: 13, suit: :diamonds},
     ]
 
-    assert Hand.score(cards) == :two_pair
+    assert Hand.rank(cards) == :two_pair
   end
 
   test "evaluates one pair" do
@@ -115,7 +115,7 @@ defmodule Poker.HandTest do
       %Card{rank: 2, suit: :diamonds},
     ]
 
-    assert Hand.score(cards) == :one_pair
+    assert Hand.rank(cards) == :one_pair
   end
 
   test "evaluates high card" do
@@ -127,6 +127,6 @@ defmodule Poker.HandTest do
       %Card{rank: 11, suit: :spades},
     ]
 
-    assert Hand.score(cards) == :high_card
+    assert Hand.rank(cards) == :high_card
   end
 end

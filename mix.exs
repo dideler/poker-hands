@@ -28,6 +28,6 @@ defmodule Poker.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [{:minmaxlist, "~> 0.0.7"},]
   end
 end

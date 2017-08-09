@@ -16,7 +16,7 @@ defmodule Poker.Hand do
     }
   end
 
-  def score(cards) do
+  def rank(cards) do
     cards = Enum.sort_by(cards, &(&1.rank))
     cond do
       royal_flush?(cards) -> :royal_flush
@@ -42,7 +42,7 @@ defmodule Poker.Hand do
     ]), do: true
   defp royal_flush?(_), do: false
 
-  # Five cards in numerical order, all of identical suits.
+  # Five cards in a sequence, all of identical suits.
   defp straight_flush?(cards), do: straight?(cards) && flush?(cards)
 
   # Four cards of the same rank, and one side card or ‘kicker’.
@@ -89,7 +89,7 @@ defmodule Poker.Hand do
     ]), do: true
   defp flush?(_), do: false
 
-  # Five cards in numerical order.
+  # Five cards in a sequence.
   defp straight?([
     %{rank: a},
     %{rank: b},
@@ -126,7 +126,7 @@ defmodule Poker.Hand do
     ]), do: true
   defp three_of_a_kind?(_), do: false
 
-  # Two cards of a matching rank, two cards of a different matching rank, and one side card.
+  # Two different pairs of matching rank, and one side card.
   defp two_pair?([
     %{rank: a},
     %{rank: a},
